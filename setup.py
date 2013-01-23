@@ -16,7 +16,7 @@ setup(
     license='BSD',
     description='Django PostgreSQL netfields implementation',
     long_description=get_long_description(),
-    url='https://github.com/adamcik/django-postgresql-netfields',
+    url='https://github.com/wolever/django-postgresql-netfields-noipy',
 
     author=u'Thomas Admacik',
     author_email='adamcik@samfundet.no',
