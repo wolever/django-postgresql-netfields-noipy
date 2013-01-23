@@ -1,5 +1,3 @@
-from IPy import IP
-
 from django.db import IntegrityError
 from django.test import TestCase
 
@@ -25,9 +23,6 @@ class BaseTestCase(object):
 
     def test_save(self):
         self.model(field='10.0.0.1').save()
-
-    def test_save_object(self):
-        self.model(field=IP('10.0.0.1')).save()
 
     def test_equals_lookup(self):
         self.assertSqlEquals(self.qs.filter(field='10.0.0.1'),

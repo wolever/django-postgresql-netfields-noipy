@@ -1,5 +1,4 @@
 import re
-from IPy import IP
 
 from django import forms
 from django.utils.encoding import force_unicode
@@ -32,7 +31,7 @@ class NetAddressFormField(forms.Field):
         if not value:
             return None
 
-        if isinstance(value, IP):
+        if isinstance(value, basestring):
             return value
 
         return self.python_type(value)

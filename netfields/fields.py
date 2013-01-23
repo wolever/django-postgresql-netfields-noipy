@@ -1,9 +1,10 @@
-from IPy import IP
-
+import re
 from django.db import models
 
 from netfields.managers import NET_OPERATORS, NET_TEXT_OPERATORS
 from netfields.forms import NetAddressFormField, MACAddressFormField
+
+ipv4_addr_re = re.compile("^([0-9]{1,3}.){3}[0-9]{1,3}$")
 
 
 class _NetAddressField(models.Field):
@@ -16,8 +17,11 @@ class _NetAddressField(models.Field):
     def to_python(self, value):
         if not value:
             return value
-
-        return IP(value)
+        # this is a bit naive, given that the ipaddr field will actually accept
+        # a bunch of different things... But we'll live with that for now.
+        if not ipv4_addr_re.match(value):
+            raise ValueError("invalid IPv4 address: %r" %(value, ))
+        return value
 
     def get_prep_lookup(self, lookup_type, value):
         if not value:

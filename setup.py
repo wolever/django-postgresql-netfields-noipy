@@ -25,7 +25,6 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        'IPy',
         'django>=1.3',
     ],
 
